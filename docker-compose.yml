@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+
+  db:
+    image: mysql:oraclelinux8
+    environment:
+      MYSQL_ROOT_PASSWORD: cases123
+      MYSQL_DATABASE: case_studies
+      MYSQL_USER: root
+      MYSQL_PASSWORD: cases123
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/database.sql:/docker-entrypoint-initdb.d/database.sql
+    ports:
+      - "3306:3306"
+    restart: always
+
+  api_flask:
+    build: ./webapp
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    volumes:
+      - ./webapp/server.py:/server.py
+    environment:
+      HOSTDB: database
+      USERDB: root
+      PASSDB: cases123
+      NAMEDB: case_studies
+
+volumes:
+  mysql_data:
+    driver: local

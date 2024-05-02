@@ -1,14 +1,15 @@
 from flask import Flask, render_template
 import mysql.connector
+import os
 
 app = Flask(__name__)
 
 # Database configuration
 db_config = {
-    'host': 'database',
-    'user': 'root',
-    'password': 'cases123',
-    'database': 'case_studies',
+    'host': os.environ.get('HOSTDB'),
+    'user': os.environ.get('USERDB'),
+    'password': os.environ.get('PASSDB'),
+    'database': os.environ.get('NAMEDB')
 }
 
 # Route to display data from the database
