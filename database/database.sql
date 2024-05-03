@@ -1,4 +1,4 @@
-CREATE DATABASE case_studies;
+CREATE DATABASE IF NOT EXISTS case_studies;
 
 USE case_studies;
 

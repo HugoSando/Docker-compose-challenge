@@ -5,9 +5,9 @@ services:
   db:
     image: mysql:oraclelinux8
     environment:
+      MYSQL_USER: cases
       MYSQL_ROOT_PASSWORD: cases123
       MYSQL_DATABASE: case_studies
-      MYSQL_USER: root
       MYSQL_PASSWORD: cases123
     volumes:
       - mysql_data:/var/lib/mysql
@@ -16,7 +16,7 @@ services:
       - "3306:3306"
     restart: always
 
-  api_flask:
+  webapp:
     build: ./webapp
     ports:
       - "80:80"
@@ -25,8 +25,8 @@ services:
     volumes:
       - ./webapp/server.py:/server.py
     environment:
-      HOSTDB: database
-      USERDB: root
+      HOSTDB: db
+      USERDB: cases
       PASSDB: cases123
       NAMEDB: case_studies
 
