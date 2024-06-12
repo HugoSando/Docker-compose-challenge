@@ -3,7 +3,7 @@ version: '3.9'
 services:
 
   db:
-    image: mysql:oraclelinux8
+    image: mysql:oraclelinux9
     environment:
       MYSQL_USER: cases
       MYSQL_ROOT_PASSWORD: cases123
